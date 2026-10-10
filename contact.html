@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Kanit:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Contact · Nagihan Keskin</title>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html#about">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="maps.html">Maps</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <header class="page-head">
+    <p class="eyebrow">Say hello</p>
+    <h1 class="mega">Contact</h1>
+  </header>
+
+  <section class="section">
+    <div class="card photo-card in observe">
+      <img data-db="profile.photo" alt="Portrait of Nagihan Keskin">
+      <div>
+        <h3><span data-db="profile.firstName"></span> <span data-db="profile.lastName"></span></h3>
+        <p class="meta"><span data-db="profile.title"></span> · <span data-db="profile.university"></span></p>
+        <p style="margin-bottom:20px"><span data-db="profile.location"></span></p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button id="copy-email" class="btn btn-outline" type="button">Copy email</button>
+          <a class="btn btn-outline" data-db="profile.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn-glow" data-db="profile.email" data-db-prefix="mailto:">Email me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="card in observe">
+      <p class="eyebrow" style="margin-bottom:18px">Send a message</p>
+      <form id="contact-form">
+        <input name="name" placeholder="Your name" required>
+        <input name="email" type="email" placeholder="Your email" required>
+        <textarea name="message" placeholder="Your message" required></textarea>
+        <button class="btn btn-glow" type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>© <span data-year></span> <span data-db="profile.firstName"></span> <span data-db="profile.lastName"></span> · Geomatics Engineering · Hacettepe University</footer>
+  <script src="data/db.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
