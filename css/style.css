@@ -101,6 +101,8 @@ img { max-width: 100%; display: block; }
 
 .hero-media {
   justify-self: center; align-self: center;
+  width: min(100%, 860px);
+  width: min(100%, 860px, calc((100vh - 400px) * 16 / 9));
   width: min(100%, 860px, calc((100svh - 400px) * 16 / 9));
   min-width: min(100%, 320px);
   aspect-ratio: 16 / 9;
@@ -244,6 +246,7 @@ footer { text-align: center; padding: 50px 16px; color: var(--muted); font-size:
 @media (max-width: 640px) {
   /* telefonda sadece yanlardaki arka plan biraz kırpılır, kişi tam görünür */
   .hero-media { width: 100%; aspect-ratio: 4 / 3; }
+  .scroll-cue { display: none; }
   .hero-bottom { flex-direction: column; align-items: stretch; }
   .hero-ctas { flex-direction: row; justify-content: space-between; }
   .hero-ctas .btn { padding: 12px 18px; font-size: 13px; }
