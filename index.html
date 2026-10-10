@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Kanit:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
   <link rel="preload" as="image" href="assets/video/nagihan-intro-poster.jpg">
   <title>Nagihan Keskin</title>
 </head>
@@ -21,8 +21,9 @@
   <header class="hero">
     <div class="hero-sticky">
       <h1 class="mega">Hi, I'm Nagihan</h1>
-      <div class="hero-media">
-        <video id="hero-video" class="hero-video" poster="assets/video/nagihan-intro-poster.jpg"
+      <div class="hero-media" style="max-width:100%;overflow:hidden">
+        <video id="hero-video" class="hero-video" width="1024" height="576"
+               style="width:100%;height:100%;max-width:100%;object-fit:cover" poster="assets/video/nagihan-intro-poster.jpg"
                autoplay muted loop playsinline preload="auto" aria-label="Nagihan saying hi">
           <source src="assets/video/nagihan-intro.mp4" type="video/mp4">
           <source src="assets/video/nagihan-intro.webm" type="video/webm">
@@ -77,7 +78,7 @@
   </section>
 
   <footer>© <span data-year></span> <span data-db="profile.firstName"></span> <span data-db="profile.lastName"></span> · Geomatics Engineering · Hacettepe University</footer>
-  <script src="data/db.js"></script>
-  <script src="js/main.js"></script>
+  <script src="data/db.js?v=3"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>
