@@ -23,8 +23,13 @@
   $$("footer [data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
   // ----- Ana sayfa -----
-  const avatar = $("#avatar");
-  if (avatar && window.mountAvatar) window.mountAvatar(avatar);
+  // Giriş videosu: sadece ekrandayken oynar (kaydırırken işlemciyi yormaz)
+  const video = $("#hero-video");
+  if (video) {
+    const play = () => { const p = video.play(); if (p) p.catch(() => {}); };
+    new IntersectionObserver(([en]) => (en.isIntersecting ? play() : video.pause()), { threshold: 0.1 }).observe(video);
+    document.addEventListener("visibilitychange", () => (document.hidden ? video.pause() : play()));
+  }
 
   // Başlığı tek satıra sığdır (ekran genişliğine göre font boyutu)
   const heroTitle = $(".hero h1");
@@ -63,7 +68,12 @@
       const n = Math.round(p * words.length);
       words.forEach((w, i) => w.classList.toggle("on", i < n));
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { onScroll(); ticking = false; });
+    }, { passive: true });
     onScroll();
   }
 

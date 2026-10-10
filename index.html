@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Kanit:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="assets/video/nagihan-intro-poster.jpg">
   <title>Nagihan Keskin</title>
 </head>
 <body>
@@ -20,7 +21,13 @@
   <header class="hero">
     <div class="hero-sticky">
       <h1 class="mega">Hi, I'm Nagihan</h1>
-      <div id="avatar" class="avatar" tabindex="0" title="Click me to say hi!"></div>
+      <div class="hero-media">
+        <video id="hero-video" class="hero-video" poster="assets/video/nagihan-intro-poster.jpg"
+               autoplay muted loop playsinline preload="auto" aria-label="Nagihan saying hi">
+          <source src="assets/video/nagihan-intro.mp4" type="video/mp4">
+          <source src="assets/video/nagihan-intro.webm" type="video/webm">
+        </video>
+      </div>
       <div class="hero-bottom">
         <p id="tagline" class="tagline"></p>
         <div class="hero-ctas">
@@ -71,7 +78,6 @@
 
   <footer>© <span data-year></span> <span data-db="profile.firstName"></span> <span data-db="profile.lastName"></span> · Geomatics Engineering · Hacettepe University</footer>
   <script src="data/db.js"></script>
-  <script src="js/avatar.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
