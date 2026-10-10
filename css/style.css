@@ -17,6 +17,9 @@
 
 html { scroll-behavior: smooth; }
 
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .25s; }
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -35,7 +38,6 @@ img { max-width: 100%; display: block; }
   display: flex; justify-content: space-between; align-items: center;
   padding: 22px clamp(16px, 5vw, 48px);
   background: linear-gradient(to bottom, rgba(10,10,11,.9), rgba(10,10,11,0));
-  backdrop-filter: blur(2px);
 }
 .nav a {
   font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
@@ -79,16 +81,15 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(110deg, #3a0e8a, var(--magenta) 35%, var(--purple) 60%, var(--orange) 80%, #3a0e8a);
   background-size: 200% 100%;
   box-shadow: 0 0 18px rgba(194,46,208,.55), inset 0 0 12px rgba(255,255,255,.15);
-  animation: shimmer 5s linear infinite;
 }
-.btn-glow:hover { box-shadow: 0 0 34px rgba(194,46,208,.85), inset 0 0 12px rgba(255,255,255,.25); }
-@keyframes shimmer { to { background-position: -200% 0; } }
+.btn-glow:hover { background-position: 100% 0; box-shadow: 0 0 34px rgba(194,46,208,.85), inset 0 0 12px rgba(255,255,255,.25); }
+.btn-glow { transition: transform .2s, box-shadow .3s, background-position .6s; }
 
 /* ---------- HERO ---------- */
-.hero { height: 210vh; position: relative; }
 .hero-sticky {
-  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  min-height: 100vh; min-height: 100svh; position: relative;
   display: grid; grid-template-rows: auto minmax(0, 1fr) auto; grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
   padding: 96px clamp(16px, 5vw, 48px) 32px;
 }
 .hero h1 {
@@ -96,26 +97,20 @@ img { max-width: 100%; display: block; }
   text-align: center; white-space: nowrap;
   animation: drop-in 1s cubic-bezier(.2,.8,.2,1) both;
 }
-@keyframes drop-in { from { opacity: 0; transform: translateY(-40px) scale(.96); filter: blur(8px); } }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-40px); } }
 
-.avatar {
+.hero-media {
   justify-self: center; align-self: center;
-  height: 100%; max-height: 560px; min-height: 0; aspect-ratio: 1 / 2; margin: 12px 0;
-  cursor: pointer; outline: none;
-  animation: rise 1.2s .25s cubic-bezier(.2,.8,.2,1) both;
-  transition: transform .4s;
+  width: min(100%, 860px, calc((100svh - 400px) * 16 / 9));
+  min-width: min(100%, 320px);
+  aspect-ratio: 16 / 9;
+  border-radius: 24px; overflow: hidden;
+  background: #3a1d17 url("../assets/video/nagihan-intro-poster.jpg") center / cover;
+  box-shadow: 0 0 60px rgba(123,47,247,.25);
+  animation: rise 1s .2s cubic-bezier(.2,.8,.2,1) both;
 }
-.avatar:hover { transform: scale(1.03); }
-.avatar:focus-visible { filter: drop-shadow(0 0 8px var(--magenta)); }
-.avatar svg { width: 100%; height: 100%; overflow: visible; }
-@keyframes rise { from { opacity: 0; transform: translateY(60px); } }
-
-.hint {
-  position: absolute; left: 50%; top: 54%; transform: translateX(-50%);
-  font-family: "Space Mono", monospace; font-size: 12px; color: var(--muted);
-  pointer-events: none; opacity: 0; animation: fade 1s 2s forwards;
-  white-space: nowrap; display: none;
-}
+.hero-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+@keyframes rise { from { opacity: 0; transform: translateY(40px); } }
 
 .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .tagline { text-transform: uppercase; font-size: clamp(16px, 2.4vw, 22px); line-height: 1.55; letter-spacing: .02em; }
@@ -140,7 +135,7 @@ img { max-width: 100%; display: block; }
 .float {
   position: absolute; width: clamp(70px, 13vw, 130px);
   animation: bob 6s ease-in-out infinite;
-  filter: drop-shadow(0 10px 25px rgba(123,47,247,.35));
+  will-change: transform;
   transition: transform .3s;
   cursor: grab;
 }
@@ -247,6 +242,8 @@ textarea { min-height: 150px; resize: vertical; }
 footer { text-align: center; padding: 50px 16px; color: var(--muted); font-size: 14px; border-top: 1px solid #18181d; }
 
 @media (max-width: 640px) {
+  /* telefonda sadece yanlardaki arka plan biraz kırpılır, kişi tam görünür */
+  .hero-media { width: 100%; aspect-ratio: 4 / 3; }
   .hero-bottom { flex-direction: column; align-items: stretch; }
   .hero-ctas { flex-direction: row; justify-content: space-between; }
   .hero-ctas .btn { padding: 12px 18px; font-size: 13px; }
